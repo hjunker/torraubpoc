@@ -4,7 +4,14 @@ torraub is a tool to stop ransomware attacks when an infection has already happe
 
 IMPORTANT: THIS IS AN VERY EARLY POC SOFTWARE PROJECT MEANT FOR RESEARCH / TESTING ONLY. CURRENTLY IT DOES NOT OFFER REALIABLE SECURITY!
 
-![Torraub Screenshot](./img/torraub01.png)  
+![Torraub Screenshot](./img/torraub01.png) 
+
+## TODOs
+* Logfile
+* History Textbox
+* suspend currently not working
+* better checks to determine whether a process is suspicious (see also ProcessBouncer checks)
+* ...
 
 Why 'torraub'?
 Torraub is an austrian term for performing an emergency brake in football/soccer (https://en.wikipedia.org/wiki/Professional_foul).
