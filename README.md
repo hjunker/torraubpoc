@@ -2,6 +2,8 @@
 
 torraub is a tool to stop ransomware attacks when an infection has already happened end encryption is starting.
 
+IMPORTANT: THIS IS AN VERY EARLY POC SOFTWARE PROJECT MEANT FOR RESEARCH / TESTING ONLY. CURRENTLY IT DOES NOT OFFER REALIABLE SECURITY!
+
 ![Torraub Screenshot](./img/torraub01.png)  
 
 Why 'torraub'?
