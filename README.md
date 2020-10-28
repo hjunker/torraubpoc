@@ -6,6 +6,9 @@ IMPORTANT: THIS IS AN VERY EARLY POC SOFTWARE PROJECT MEANT FOR RESEARCH / TESTI
 
 ![Torraub Screenshot](./img/torraub01.png) 
 
+## How does torraub work?
+torraub periodically checks all running processes for their file activity. processes showing suspicious behaviour can be whitelisted (ignored), suspended or killed by the user. The idea behind that approach is to not stop an infection before 2nd stage malware kicks in (such as my ProcessBouncer does) but to stop the 2nd stage malware encrypting the file system. When a malicious process is suspended / killed that way, some files will be lost because they have already been encrypted. But the malicious process has hopefully been blocked after showing some significant file system activity.
+
 ## TODOs
 * Logfile
 * History Textbox
