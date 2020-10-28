@@ -197,58 +197,12 @@ namespace torraub
 
                 if (suspicious & (!suspiciousProcesses.ContainsKey(p_ProcessId)))
                 {
-                    suspiciousProcesses.Add(p_ProcessId, p_Name);
-                    Process processobj = Process.GetProcessById(int.Parse(p_ProcessId)); // throws exception if process does not exist
-                                                                                         //OpenThread(ThreadAccess.SUSPEND_RESUME, false, uint.Parse(p_ProcessId));
-                    /*
-                    foreach (ProcessThread pT in processobj.Threads)
+                    try
                     {
-                        IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)pT.Id);
-
-                        if (pOpenThread == IntPtr.Zero)
-                        {
-                            continue;
-                        }
-
-                        SuspendThread(pOpenThread);
-
-                        CloseHandle(pOpenThread);
-                    }
-                    */
-                    // TODO: only if not known yet / not suspended yet!!!
-                    //ListBoxItem item = new ListBoxItem();
-                    //item.ToolTip = "suspended process " + pi.p_ProcessId + " / " + pi.p_Name;
-                    //item.Name = (String)pi.p_ProcessId;
-                    listBox1.Items.Add(pi.p_ProcessId);
-                    textBox1.Text += "\nsuspended process " + pi.p_ProcessId + " / " + pi.p_Name;
-
-                    /*
-                    Console.WriteLine(p_ProcessId + "," + p_ParentProcessId + "," + p_time.ToString() + "," + p_CreationDate + "," + p_Caption + "," + p_Name + "," + p_ExecutablePath + "," + p_CommandLine + "," + avgwrites + "," + p_ReadTransferCount + "," + p_WriteTransferCount + "," + p_OtherTransferCount + "," + p_ReadOperationCount + "," + p_WriteOperationCount + "," + p_OtherOperationCount);
-                    Console.WriteLine("suspend / kill / ignore / omit (once) this process (s/k/i/o)? ");
-                    ConsoleKeyInfo resp = Console.ReadKey();
-                    Console.WriteLine("");
-
-                    if (resp.KeyChar == 'i')
-                    {
-                        try
-                        {
-                            ignoredProcesses.Add(p_Name, p_Name);
-                        }
-                        catch (Exception e)
-                        { }
-                    }
-
-                    if (resp.KeyChar == 'k')
-                    {
-                        Process processobj = Process.GetProcessById(int.Parse(p_ProcessId));
-                        processobj.Kill();
-                    }
-
-                    if (resp.KeyChar == 's')
-                    {
+                        suspiciousProcesses.Add(p_ProcessId, p_Name);
                         Process processobj = Process.GetProcessById(int.Parse(p_ProcessId)); // throws exception if process does not exist
-                        //OpenThread(ThreadAccess.SUSPEND_RESUME, false, uint.Parse(p_ProcessId));
-
+                                                                                             //OpenThread(ThreadAccess.SUSPEND_RESUME, false, uint.Parse(p_ProcessId));
+                        /*
                         foreach (ProcessThread pT in processobj.Threads)
                         {
                             IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)pT.Id);
@@ -262,15 +216,66 @@ namespace torraub
 
                             CloseHandle(pOpenThread);
                         }
+                        */
+                        //ListBoxItem item = new ListBoxItem();
+                        //item.ToolTip = "suspended process " + pi.p_ProcessId + " / " + pi.p_Name;
+                        //item.Name = (String)pi.p_ProcessId;
+                        listBox1.Items.Add(pi.p_ProcessId);
+                        textBox1.Text += "\nsuspended process " + pi.p_ProcessId + " / " + pi.p_Name;
 
+                        /*
+                        Console.WriteLine(p_ProcessId + "," + p_ParentProcessId + "," + p_time.ToString() + "," + p_CreationDate + "," + p_Caption + "," + p_Name + "," + p_ExecutablePath + "," + p_CommandLine + "," + avgwrites + "," + p_ReadTransferCount + "," + p_WriteTransferCount + "," + p_OtherTransferCount + "," + p_ReadOperationCount + "," + p_WriteOperationCount + "," + p_OtherOperationCount);
+                        Console.WriteLine("suspend / kill / ignore / omit (once) this process (s/k/i/o)? ");
+                        ConsoleKeyInfo resp = Console.ReadKey();
+                        Console.WriteLine("");
+
+                        if (resp.KeyChar == 'i')
+                        {
+                            try
+                            {
+                                ignoredProcesses.Add(p_Name, p_Name);
+                            }
+                            catch (Exception e)
+                            { }
+                        }
+
+                        if (resp.KeyChar == 'k')
+                        {
+                            Process processobj = Process.GetProcessById(int.Parse(p_ProcessId));
+                            processobj.Kill();
+                        }
+
+                        if (resp.KeyChar == 's')
+                        {
+                            Process processobj = Process.GetProcessById(int.Parse(p_ProcessId)); // throws exception if process does not exist
+                            //OpenThread(ThreadAccess.SUSPEND_RESUME, false, uint.Parse(p_ProcessId));
+
+                            foreach (ProcessThread pT in processobj.Threads)
+                            {
+                                IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)pT.Id);
+
+                                if (pOpenThread == IntPtr.Zero)
+                                {
+                                    continue;
+                                }
+
+                                SuspendThread(pOpenThread);
+
+                                CloseHandle(pOpenThread);
+                            }
+
+                        }
+                        */
                     }
-                    */
+                    catch (Exception ex)
+                    { }
                 }
 
             }
             timer1.Start();
         }
 
+        // KILL PROCESS
         private void button2_Click(object sender, EventArgs e)
         {
             // kill process with id selected in listBox1
@@ -290,7 +295,7 @@ namespace torraub
             textBox3.Text = tmp;
         }
 
-        // TODO: RESUME FUNKTIONIERT NOCH NICHT!!!
+        // IGNORE PROCESS PERMANENTLY (currently not persistent)
         private void button3_Click(object sender, EventArgs e)
         {
             Debug.WriteLine("AM I ALIVE?!?!?!");
@@ -325,8 +330,31 @@ namespace torraub
             */
         }
 
+        // TODO: SUSPEND CURRENTLY NOT WORKING!!!
+        // SUSPEND PROCESS
         private void button1_Click(object sender, EventArgs e)
         {
+            String pid = (String)listBox1.SelectedItem;
+            Process processobj = Process.GetProcessById(int.Parse(pid)); // throws exception if process does not exist
+                                                                                 //OpenThread(ThreadAccess.SUSPEND_RESUME, false, uint.Parse(p_ProcessId));
+            
+            foreach (ProcessThread pT in processobj.Threads)
+            {
+                IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)pT.Id);
+
+                if (pOpenThread == IntPtr.Zero)
+                {
+                    continue;
+                }
+
+                SuspendThread(pOpenThread);
+
+                CloseHandle(pOpenThread);
+            }
+
+            textBox3.Text = "";
+            suspiciousProcesses.Remove(pid);
+            listBox1.Items.RemoveAt(listBox1.SelectedIndex);
 
         }
     }

@@ -84,7 +84,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 48);
             this.button1.TabIndex = 4;
-            this.button1.Text = "resume";
+            this.button1.Text = "suspend";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -125,6 +125,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(451, 123);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 31);
