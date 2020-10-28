@@ -331,7 +331,7 @@ namespace torraub
         }
 
         // TODO: SUSPEND CURRENTLY NOT WORKING!!!
-        // SUSPEND PROCESS
+        // SUSPEND PROCESS (IF NOT SUSPENDED AUTOMATICALLY - THEN RESUME SHOULD BE POSSIBLE)
         private void button1_Click(object sender, EventArgs e)
         {
             String pid = (String)listBox1.SelectedItem;
